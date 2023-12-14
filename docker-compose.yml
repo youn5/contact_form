@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  app:
+    image: contact-form
+    build:
+      context: .
+    environment:
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+      POSTGRES_DB: contact
+      POSTGRES_USER: contact
+      POSTGRES_PASSWORD: password
+    ports:
+      - 3000:3000
+
+  postgres:
+    image: postgres:14.2-alpine
+    environment:
+      POSTGRES_DB: contact
+      POSTGRES_USER: contact
+      POSTGRES_PASSWORD: password
