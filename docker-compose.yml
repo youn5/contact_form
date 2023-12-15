@@ -1,22 +1,45 @@
-version: '3'
+version: '3.8'
 
 services:
-  app:
-    image: contact-form
+  web:
+    container_name: Contact_Form
+    image: projet_contact_form
     build:
       context: .
-    environment:
-      POSTGRES_HOST: postgres
-      POSTGRES_PORT: 5432
-      POSTGRES_DB: contact
-      POSTGRES_USER: contact
-      POSTGRES_PASSWORD: password
+      dockerfile: Dockerfile
     ports:
-      - 3000:3000
-
-  postgres:
-    image: postgres:14.2-alpine
+      - "3000:3000"
+      - "9229:9229"
     environment:
-      POSTGRES_DB: contact
-      POSTGRES_USER: contact
-      POSTGRES_PASSWORD: password
+      - PORT=8000
+    volumes:
+      - ./src:/app/src
+      - ./dist:/app/dist
+
+    working_dir: /app
+    command: [ "npm", "run", "dev" ]
+
+  postgres_db:
+    container_name: postgres_db_contact_form
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_DB=contact_form
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=password
+
+    volumes:
+      - ./database/db.sql:/docker-entrypoint-initdb.d/init.sql
+
+    ports:
+      - "5432:5432"
+
+  adminer:
+    container_name: adminer_contact_form
+
+    image: adminer
+    restart: always
+    ports:
+      - "8080:8080"
+    environment:
+      ADMINER_DEFAULT_SERVER: "postgres_db"
