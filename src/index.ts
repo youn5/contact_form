@@ -1,5 +1,5 @@
 import * as express from 'express';
-//import * as pg from 'pg';
+ 
 import * as bodyParser from 'body-parser';
 import { MessageSendSave } from './save';
 
@@ -40,18 +40,19 @@ app.post('/submit-contact', (req, res) => {
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
   if (!nameRegex.test(User_Surname)) {
-    res.send("Error: Invalid input");
+    res.send("Error: nom invalide ");
     error = true;
   }  
   if (!nameRegex.test(User_Firstname)) {
-    res.send("Error: Invalid input");
+    res.send("Error: prenom invalide");
     error = true;
   }
   if (!emailRegex.test(User_Email)) {
-    res.send("Error: Invalid input");
+    res.send("Error: Invalid email");
     error = true;
   }
   if (User_Message.length < 10) {
+    res.send("Error: message doit avoir plus de 10 caractères");
     error = true;
   }
 
