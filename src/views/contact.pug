@@ -1,16 +1,69 @@
+
 doctype html
 html
   head
     title= pageTitle
   body
     h1 Formulaire de contact
+    if errorMessages
+      each error, field in errorMessages
+        p(style="color: red")= error
     form(action="/submit-contact" method="post")
       label(for="User_Surname") Nom :
-      input(type="text" id="User_Surname" name="User_Surname" required)
+      input(type="text" id="User_Surname" name="User_Surname" required value=userSurname)
       label(for="User_Firstname") Prénom :
-      input(type="text" id="User_Firstname" name="User_Firstname" required)
+      input(type="text" id="User_Firstname" name="User_Firstname" required value=userFirstname)
       label(for="User_Email") Email :
-      input(type="email" id="User_Email" name="User_Email" required)
+      input(type="email" id="User_Email" name="User_Email" required value=userEmail)
       label(for="User_Message") Message :
-      textarea(id="User_Message" name="User_Message" required)
+      textarea(id="User_Message" name="User_Message" required)= userMessage
       input(type="submit" value="Envoyer")
+
+
+
+
+
+
+
+//- doctype html
+//- html
+//-   head
+//-     title= pageTitle
+//-   body
+//-     h1 Formulaire de contact
+//-     form(action="/submit-contact" method="post")
+//-       label(for="User_Surname") Nom :
+//-       input(type="text" id="User_Surname" name="User_Surname" required)
+//-       label(for="User_Firstname") Prénom :
+//-       input(type="text" id="User_Firstname" name="User_Firstname" required)
+//-       label(for="User_Email") Email :
+//-       input(type="email" id="User_Email" name="User_Email" required)
+//-       label(for="User_Message") Message :
+//-       textarea(id="User_Message" name="User_Message" required)
+//-       input(type="submit" value="Envoyer")
+
+//- ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+//- doctype html
+//- html
+//-   head
+//-     title= pageTitle
+//-     style.
+//-       .error-message {
+//-         color: red;
+//-       }
+//-   body
+//-     h1 Formulaire de contact
+//-     div.error-message
+//-       if errorMessage
+//-         p= errorMessage
+//-     form(action="/submit-contact" method="post")
+//-       label(for="User_Surname") Nom :
+//-       input(type="text" id="User_Surname" name="User_Surname" required)
+//-       label(for="User_Firstname") Prénom :
+//-       input(type="text" id="User_Firstname" name="User_Firstname" required)
+//-       label(for="User_Email") Email :
+//-       input(type="email" id="User_Email" name="User_Email" required)
+//-       label(for="User_Message") Message :
+//-       textarea(id="User_Message" name="User_Message" required)
+//-       input(type="submit" value="Envoyer")
+//- //.;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

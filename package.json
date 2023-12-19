@@ -9,7 +9,6 @@
     "build": "npx tsc",
     "start": "node dist/index.js",
     "dev": "nodemon src/index.ts"
-    
   },
   "author": "youn",
   "license": "ISC",
@@ -29,6 +28,7 @@
   },
   "dependencies": {
     "all": "^0.0.0",
+    "body-parser": "^1.20.2",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
